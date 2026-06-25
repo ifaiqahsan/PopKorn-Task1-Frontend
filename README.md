@@ -1,27 +1,39 @@
-# PopKorn - Movie Ticket Booking System
+# 🍿 PopKorn - Movie Ticket Booking System
 
-## Overview
-PopKorn is a responsive movie ticket booking platform developed as part of the DecodeLabs Summer Internship Program 2026.
+A high-fidelity, responsive frontend React application for browsing premium cinema experiences, filtering film categories by runtime/genre/language, and managing electronic booking passes.
 
-## Features
-- Browse Movies
-- Search & Filter Movies
-- View Movie Details
-- Seat Selection
-- Booking History
-- Responsive Design
+## 📱 Interface Preview & Demos
 
-## Technologies
-- React
-- Vite
-- JavaScript
-- HTML5
-- CSS3
+### 🎬 Explore Movies Catalog
+Browse real-time cinema titles with interactive status indicators, advanced live search query parameters, and instant category filters.
 
-## Installation
+<img src="assets/movies-page.png" width="800" alt="PopKorn Movies Catalog Grid" />
 
-npm install
-npm run dev
+---
 
-## Author
-Faiq Ahsan
+### 🎟️ My Bookings Pass Dashboard
+Access your custom verified digital tickets complete with detailed location metrics, price structures, and dynamic real-time laser-scanning tracking barcodes.
+
+<img src="assets/mybookings-page.png" width="800" alt="PopKorn My Bookings Passes" />
+
+---
+
+## ✨ Features
+
+* **Dynamic Catalog Search:** Real-time client-side movie tracking filtration.
+* **Component-Driven Grid:** Highly reusable custom structures (`<MovieCard />`, filters, and navigation matrix rails).
+* **High-Fidelity UI Design:** Premium glassmorphism design layouts (`glass-panel`) with tailored cinema CSS interactions.
+* **Centralized Data Layer:** Integrated local mock database matching production-ready backend schemas.
+
+## 🛠️ Tech Stack
+
+* **Library:** React (Functional Components + Hooks)
+* **Routing:** React Router DOM v6
+* **Styling:** Modular CSS & Inline Flex/Grid Engines
+* **Build Tool:** Vite
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/ifaiqahsan/PopKorn-Task1-Frontend.git](https://github.com/ifaiqahsan/PopKorn-Task1-Frontend.git)
