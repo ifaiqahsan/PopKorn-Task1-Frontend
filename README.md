@@ -7,11 +7,11 @@ A high-fidelity, responsive frontend React application for browsing cinema title
 ### 🎬 Explore Movies Catalog
 Browse real-time cinema titles with interactive filling gauges, advanced live search query filters, and clean genre sorting layouts.
 
-![PopKorn Movies Catalog Grid](./public/screenshots/movies-page.png)
+![PopKorn Movies Catalog Grid](./1%20-%20FrontEnd/public/screenshots/movies-page.png)
 
 ---
 
 ### 🎟️ My Bookings Pass Dashboard
 Access your verified digital tickets complete with detailed showtime matrices, breakdown costs, and custom scanning tracking barcodes.
 
-![PopKorn My Bookings Passes](./public/screenshots/mybookings-page.png)
+![PopKorn My Bookings Passes](./1%20-%20FrontEnd/public/screenshots/mybookings-page.png)
