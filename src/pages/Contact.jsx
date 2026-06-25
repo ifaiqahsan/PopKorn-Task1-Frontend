@@ -1,153 +1,193 @@
-import { useState } from 'react'
-import './pages.css'
+import React, { useState } from 'react';
 
 function Contact() {
-    const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-    const [submitted, setSubmitted] = useState(false)
-    const [errors, setErrors] = useState({})
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
-    const validate = () => {
-        const errs = {}
-        if (!form.name.trim()) errs.name = 'Name is required.'
-        if (!form.email.trim()) errs.email = 'Email is required.'
-        else if (!/\S+@\S+\.\S+/.test(form.email)) errs.email = 'Enter a valid email.'
-        if (!form.message.trim()) errs.message = 'Message cannot be empty.'
-        return errs
-    }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setForm(prev => ({ ...prev, [name]: value }))
-        if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Message sent successfully!');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const errs = validate()
-        if (Object.keys(errs).length > 0) {
-            setErrors(errs)
-            return
-        }
-        setSubmitted(true)
-        setForm({ name: '', email: '', subject: '', message: '' })
-    }
+  return (
+    <div style={{ maxWidth: '1100px', margin: '50px auto', padding: '0 24px', paddingBottom: '100px' }}>
+      
+      {/* Page Title Header */}
+      <div style={{ marginBottom: '40px' }}>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '6px', letterSpacing: '-0.5px' }}>
+          Contact <span style={{ color: 'var(--primary)' }}>Us</span>
+        </h1>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Have a question? We'd love to hear from you.</p>
+      </div>
 
-    return (
-        <div className="page contact-page">
-            <div className="page-header container">
-                <h1 className="page-title">Contact Us</h1>
-                <p className="page-subtitle">Have a question? We'd love to hear from you.</p>
+      {/* Main Two-Column Split Layout */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.8fr', gap: '40px', alignItems: 'start' }}>
+        
+        {/* LEFT COLUMN: Premium Info Cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          
+          <div className="glass-panel" style={{ padding: '24px', borderRadius: '16px' }}>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.5rem', background: 'rgba(225,9,20,0.1)', padding: '10px', borderRadius: '12px', color: 'var(--primary)' }}>📍</span>
+              <div>
+                <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '4px', color: '#fff' }}>Address</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                  Main Boulevard, Gulberg III, Lahore, Pakistan
+                </p>
+              </div>
             </div>
+          </div>
 
-            <div className="container contact-layout">
-                {/* Info */}
-                <div className="contact-info">
-                    <div className="contact-info__item">
-                        <span className="contact-info__icon">📍</span>
-                        <div>
-                            <h4>Address</h4>
-                            <p>Main Boulevard, Gulberg III, Lahore, Pakistan</p>
-                        </div>
-                    </div>
-                    <div className="contact-info__item">
-                        <span className="contact-info__icon">📞</span>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+92 300 1234567</p>
-                        </div>
-                    </div>
-                    <div className="contact-info__item">
-                        <span className="contact-info__icon">✉️</span>
-                        <div>
-                            <h4>Email</h4>
-                            <p>support@popkorn.pk</p>
-                        </div>
-                    </div>
-                    <div className="contact-info__item">
-                        <span className="contact-info__icon">🕐</span>
-                        <div>
-                            <h4>Hours</h4>
-                            <p>Mon – Sun: 10:00 AM – 11:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Form */}
-                <div className="contact-form-wrap">
-                    {submitted ? (
-                        <div className="contact-success">
-                            <span className="contact-success__icon">✅</span>
-                            <h3>Message Sent!</h3>
-                            <p>Thanks for reaching out. We'll get back to you within 24 hours.</p>
-                            <button className="btn-primary" onClick={() => setSubmitted(false)}>
-                                Send Another
-                            </button>
-                        </div>
-                    ) : (
-                        <form className="contact-form" onSubmit={handleSubmit} noValidate>
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="name">Full Name</label>
-                                    <input
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        className={`form-input ${errors.name ? 'error' : ''}`}
-                                        placeholder="Ahmed Khan"
-                                        value={form.name}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.name && <span className="form-error">{errors.name}</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="email">Email</label>
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        className={`form-input ${errors.email ? 'error' : ''}`}
-                                        placeholder="ahmed@email.com"
-                                        value={form.email}
-                                        onChange={handleChange}
-                                    />
-                                    {errors.email && <span className="form-error">{errors.email}</span>}
-                                </div>
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label" htmlFor="subject">Subject</label>
-                                <input
-                                    id="subject"
-                                    name="subject"
-                                    type="text"
-                                    className="form-input"
-                                    placeholder="Booking issue, refund, general query..."
-                                    value={form.subject}
-                                    onChange={handleChange}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label" htmlFor="message">Message</label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    rows={5}
-                                    className={`form-input form-textarea ${errors.message ? 'error' : ''}`}
-                                    placeholder="Describe your issue or question..."
-                                    value={form.message}
-                                    onChange={handleChange}
-                                />
-                                {errors.message && <span className="form-error">{errors.message}</span>}
-                            </div>
-
-                            <button type="submit" className="btn-primary submit-btn">Send Message</button>
-                        </form>
-                    )}
-                </div>
+          <div className="glass-panel" style={{ padding: '24px', borderRadius: '16px' }}>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.5rem', background: 'rgba(225,9,20,0.1)', padding: '10px', borderRadius: '12px', color: 'var(--primary)' }}>📞</span>
+              <div>
+                <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '4px', color: '#fff' }}>Phone</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>+92 300 1234567</p>
+              </div>
             </div>
+          </div>
+
+          <div className="glass-panel" style={{ padding: '24px', borderRadius: '16px' }}>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.5rem', background: 'rgba(225,9,20,0.1)', padding: '10px', borderRadius: '12px', color: 'var(--primary)' }}>✉️</span>
+              <div>
+                <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '4px', color: '#fff' }}>Email</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>support@popkorn.pk</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="glass-panel" style={{ padding: '24px', borderRadius: '16px' }}>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '1.5rem', background: 'rgba(225,9,20,0.1)', padding: '10px', borderRadius: '12px', color: 'var(--primary)' }}>🕒</span>
+              <div>
+                <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '4px', color: '#fff' }}>Hours</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Mon - Sun: 10:00 AM - 11:00 PM</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-    )
+
+        {/* RIGHT COLUMN: Glass Form Panel */}
+        <form onSubmit={handleSubmit} className="glass-panel" style={{ padding: '40px', borderRadius: '20px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px', letterSpacing: '0.5px' }}>Full Name</label>
+              <input 
+                type="text" 
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Ahmed Khan" 
+                required
+                className="input-field"
+              />
+            </div>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px', letterSpacing: '0.5px' }}>Email Address</label>
+              <input 
+                type="email" 
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="ahmed@email.com" 
+                required
+                className="input-field"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px', letterSpacing: '0.5px' }}>Subject</label>
+            <input 
+              type="text" 
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              placeholder="Booking Issue, refund, general query..." 
+              required
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px', letterSpacing: '0.5px' }}>Message</label>
+            <textarea 
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Describe your issue or question..." 
+              rows="5"
+              required
+              className="input-field"
+              style={{ resize: 'vertical', fontFamily: 'inherit' }}
+            />
+          </div>
+
+          {/* Premium Red Action Button */}
+          <button type="submit" className="submit-btn">
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+      {/* Inline styles for inputs and button interactions */}
+      <style>{`
+        .input-field {
+          width: 100%;
+          padding: 14px 16px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 10px;
+          color: #fff;
+          font-size: 0.95rem;
+          transition: all 0.2s ease;
+          outline: none;
+        }
+        .input-field:focus {
+          border-color: var(--primary);
+          background: rgba(255, 255, 255, 0.05);
+          box-shadow: 0 0 10px var(--primary-glow);
+        }
+        .submit-btn {
+          width: 100%;
+          padding: 16px;
+          background: var(--primary);
+          color: #fff;
+          border: none;
+          border-radius: 12px;
+          font-size: 1rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 15px var(--primary-glow);
+        }
+        .submit-btn:hover {
+          transform: translateY(-2px);
+          filter: brightness(1.1);
+          box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+        }
+        .submit-btn:active {
+          transform: translateY(0);
+        }
+      `}</style>
+
+    </div>
+  );
 }
 
 export default Contact;

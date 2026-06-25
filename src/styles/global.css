@@ -1,153 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --primary: #e50914;
+  --primary-glow: rgba(229, 9, 20, 0.4);
+  --bg-dark: #0a0a0c;
+  --bg-gradient: radial-gradient(circle at 50% -20%, #1a0203 0%, #060608 80%);
+  --glass-bg: rgba(18, 18, 24, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary: #e50914;
-    --primary-dark: #b20710;
-    --bg-dark: #0f0f0f;
-    --bg-card: #1a1a1a;
-    --bg-card-hover: #222222;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --text-muted: #666666;
-    --border: #2a2a2a;
-    --seat-available: #2d6a4f;
-    --seat-selected: #e50914;
-    --seat-booked: #3a3a3a;
-    --radius: 8px;
-    --radius-lg: 14px;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    --transition: 0.2s ease;
-}
-
-html {
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
-    min-height: 100vh;
-    line-height: 1.6;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-dark);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
 }
 
-.app-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+/* Glassmorphism Reusable Token */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.main-content {
-    flex: 1;
+/* Animations */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+@keyframes laserScan {
+  0% { top: 0%; opacity: 0.3; }
+  50% { top: 100%; opacity: 1; }
+  100% { top: 0%; opacity: 0.3; }
 }
 
-button {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    font-family: 'Inter', sans-serif;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.btn-primary {
-    background-color: var(--primary);
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: var(--radius);
-    font-size: 0.95rem;
-    font-weight: 600;
-    transition: background-color var(--transition);
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-dark);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: var(--text-primary);
-    padding: 10px 22px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: border-color var(--transition), color var(--transition);
-}
-
-.btn-outline:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.section-title {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 24px;
-}
-
-.badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    background-color: var(--primary);
-    color: #fff;
-}
-
-.badge-outline {
-    background-color: transparent;
-    border: 1px solid var(--text-muted);
-    color: var(--text-secondary);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-dark);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--text-muted);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 1.3rem;
-    }
-
-    .container {
-        padding: 0 16px;
-    }
+@keyframes livePulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.03); opacity: 1; box-shadow: 0 0 15px var(--primary-glow); }
 }
