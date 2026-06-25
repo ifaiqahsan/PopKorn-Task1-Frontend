@@ -1,0 +1,134 @@
+.seatmap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.seatmap__screen-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.seatmap__screen {
+    width: 70%;
+    max-width: 340px;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    border-top: 3px solid var(--primary);
+    background: linear-gradient(to bottom, rgba(229, 9, 20, 0.08), transparent);
+    border-radius: 4px 4px 0 0;
+}
+
+.seatmap__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.seatmap__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.seatmap__row-label {
+    width: 18px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.seatmap__seats {
+    display: flex;
+    gap: 8px;
+}
+
+.seat {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px 6px 3px 3px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, background var(--transition);
+    border: none;
+}
+
+.seat.available {
+    background: var(--seat-available);
+    color: #fff;
+    cursor: pointer;
+}
+
+.seat.available:hover {
+    transform: scale(1.12);
+    background: #40916c;
+}
+
+.seat.selected {
+    background: var(--seat-selected);
+    color: #fff;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.seat.booked {
+    background: var(--seat-booked);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.seatmap__legend {
+    display: flex;
+    gap: 24px;
+    padding-top: 4px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.legend-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.legend-box.available {
+    background: var(--seat-available);
+}
+
+.legend-box.selected {
+    background: var(--seat-selected);
+}
+
+.legend-box.booked {
+    background: var(--seat-booked);
+}
+
+@media (max-width: 480px) {
+    .seat {
+        width: 30px;
+        height: 30px;
+        font-size: 0.65rem;
+    }
+
+    .seatmap__seats {
+        gap: 5px;
+    }
+}

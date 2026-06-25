@@ -1,0 +1,6 @@
+/* Seat map styles are co-located with the SeatMap component in src/components/SeatMap.css */
+/* This file is reserved for any page-level seat selection overrides */
+
+.seat-selection-page .seatmap {
+    padding: 20px 0;
+}
