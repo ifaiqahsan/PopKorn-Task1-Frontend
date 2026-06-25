@@ -1,16 +1,27 @@
-# React + Vite
+# PopKorn - Movie Ticket Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+PopKorn is a responsive movie ticket booking platform developed as part of the DecodeLabs Summer Internship Program 2026.
 
-Currently, two official plugins are available:
+## Features
+- Browse Movies
+- Search & Filter Movies
+- View Movie Details
+- Seat Selection
+- Booking History
+- Responsive Design
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technologies
+- React
+- Vite
+- JavaScript
+- HTML5
+- CSS3
 
-## React Compiler
+## Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+npm install
+npm run dev
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Author
+Faiq Ahsan
